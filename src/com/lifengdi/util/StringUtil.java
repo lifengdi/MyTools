@@ -1,4 +1,4 @@
-package com.lifengdi.tool;
+package com.lifengdi.util;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -11,9 +11,9 @@ import java.util.regex.Pattern;
  * @date 2017年1月18日 下午10:19:37
  * @version 1.0.0
  */
-public class StringTool {
+public class StringUtil {
 
-	private StringTool() {
+	private StringUtil() {
 	}
 
 	/**
@@ -68,8 +68,7 @@ public class StringTool {
 	public static String replaceBlank(String str) {
 		Pattern p = Pattern.compile("\\t|\r|\n");
 		Matcher m = p.matcher(str);
-		String after = m.replaceAll("");
-		return after;
+		return m.replaceAll("");
 	}
 
 	/**
@@ -159,8 +158,7 @@ public class StringTool {
 			int length = str.length();
 			try {
 				if (length <= 11) {
-					int num = Integer.parseInt(str);
-					return num;
+					return Integer.parseInt(str);
 				}
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -214,8 +212,7 @@ public class StringTool {
 		if (str == null) {
 			return str;
 		}
-		str = replace(str, "'", "''");
-		return str;
+		return replace(str, "'", "''");
 	}
 	
 	/**
@@ -280,32 +277,32 @@ public class StringTool {
 	 * @param str 要判断的字符串
 	 * @return   
 	 */
-	public static boolean isHavePriceTag(String str){
-    	String reg="\\d";
-		boolean isHavePriceTag=false;
-		if(str.contains(".")){
-			String[] contents=str.trim().split("");
-    		for(int i=0;i<contents.length;i++){
-    			if(contents[i].equals(".")){
-    				if(i>0&&i<contents.length-1){
-    					int index=i;
-    					int leftindex=index-1-1;
-    					int rightIndex=index+1;
-    					String left=str.substring(leftindex,index-1);
-    					String right=str.substring(index,rightIndex);
-        				isHavePriceTag=Pattern.matches(reg, left);
-                    	isHavePriceTag=Pattern.matches(reg, right);
-    				}
-    			}else{
-    				continue;
-    			}
-    			if(isHavePriceTag){
-    				break;
-    			}
-    		}
-    	}
-		if(str.contains("￥")){
-			isHavePriceTag=true;
+	public static boolean isHavePriceTag(String str) {
+		String reg = "\\d";
+		boolean isHavePriceTag = false;
+		if (str.contains(".")) {
+			String[] contents = str.trim().split("");
+			for (int i = 0; i < contents.length; i++) {
+				if (".".equals(contents[i])) {
+					if (i > 0 && i < contents.length - 1) {
+						int index = i;
+						int leftindex = index - 1 - 1;
+						int rightIndex = index + 1;
+						String left = str.substring(leftindex, index - 1);
+						String right = str.substring(index, rightIndex);
+						isHavePriceTag = Pattern.matches(reg, left);
+						isHavePriceTag = Pattern.matches(reg, right);
+					}
+				} else {
+					continue;
+				}
+				if (isHavePriceTag) {
+					break;
+				}
+			}
+		}
+		if (str.contains("￥")) {
+			isHavePriceTag = true;
 		}
 		return isHavePriceTag;
 	}
@@ -345,8 +342,7 @@ public class StringTool {
 		boolean b= Pattern.matches(reg,mobile);
 		//是手机号码的话再进行替换，否则直接返回
 		if(b){
-			String newNum = mobile.substring(0,3)+"****"+mobile.substring(7);
-			return newNum;
+			return mobile.substring(0,3)+"****"+mobile.substring(7);
 		}
 		return mobile;
 	}

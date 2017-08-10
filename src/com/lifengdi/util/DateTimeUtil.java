@@ -1,4 +1,4 @@
-package com.lifengdi.tool;
+package com.lifengdi.util;
 
 import java.math.BigDecimal;
 import java.text.ParseException;
@@ -12,7 +12,7 @@ import java.util.Date;
  * @date 2017年1月18日 下午4:58:33
  * @version 1.0.0
  */
-public class DateTimeTool {
+public class DateTimeUtil {
 	/** 
 	 * 缺省的日期显示格式： yyyy-MM-dd 
 	 */  
@@ -56,7 +56,7 @@ public class DateTimeTool {
 	/** 
 	 * 私有构造方法，禁止对该类进行实例化 
 	 */  
-	private DateTimeTool() {  
+	private DateTimeUtil() {  
 	}  
 
 	/** 
@@ -102,9 +102,9 @@ public class DateTimeTool {
 	 * @return 日期时间字符串 
 	 */  
 	public static String getDateTime(Date date, String pattern) {  
-		if (null == pattern || "".equals(pattern)) {  
+		if (StringUtil.isBlank(pattern)) {  
 			pattern = DEFAULT_DATE_TIME_FORMAT;  
-		}  
+		}
 		SimpleDateFormat dateFormat = new SimpleDateFormat(pattern);  
 		return dateFormat.format(date);  
 	}  
@@ -306,7 +306,7 @@ public class DateTimeTool {
 		calendar.set(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONDAY), calendar.get(Calendar.DAY_OF_MONTH), 0, 0, 0);  
 		Date d2 = calendar.getTime();  
 		final int MILISECONDS = 24 * 60 * 60 * 1000;  
-		BigDecimal r = new BigDecimal(new Double((d1.getTime() - d2.getTime())) / MILISECONDS);          
+		BigDecimal r = BigDecimal.valueOf(Double.valueOf((d1.getTime() - d2.getTime())) / MILISECONDS);          
 		return Math.round(r.doubleValue());  
 	}  
 
@@ -372,7 +372,7 @@ public class DateTimeTool {
 	 */  
 	public static Date parse(String dateStr, String pattern) {  
 		Date date = null;  
-		if (null == pattern || "".equals(pattern)) {  
+		if (StringUtil.isBlank(pattern)) {  
 			pattern = DEFAULT_DATE_FORMAT;  
 		}  
 		try {  
