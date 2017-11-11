@@ -98,7 +98,7 @@ public class NumberToChinese extends AbstractNumChange<String, Long>{
 		out(num + " : "+numberToChinese.change(num));
 		num = 1111000001L;
 		out(num + " : "+numberToChinese.change(num));
-		num = 11111100001L;
+		num = 1431294967295L;
 		out(num + " : "+numberToChinese.change(num));
 	}
 
