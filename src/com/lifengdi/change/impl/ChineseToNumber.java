@@ -1,7 +1,6 @@
 package com.lifengdi.change.impl;
 
 import com.lifengdi.change.AbstractNumChange;
-import com.lifengdi.change.IChange;
 
 /**  
  * All rights Reserved, Designed By www.lifengdi.com
